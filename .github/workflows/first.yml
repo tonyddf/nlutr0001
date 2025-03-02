@@ -2,7 +2,7 @@ name: first
 
 on: [ push ]
   
-job:
+jobs:
   job1:
     name: First job
     runs-on: ubuntu-latest
