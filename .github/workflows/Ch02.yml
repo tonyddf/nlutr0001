@@ -1,0 +1,38 @@
+name: Challenge chapter 2
+
+on:
+  [ push ]
+
+jobs:
+  job1:
+    name: Show date in Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run date command
+        run: date
+
+  job2:
+    name: Show date in Windows
+    runs-on: windows-latest
+    steps:
+      - name: Run date command
+        run: Get-Date
+
+  job3:
+    name: Show date in MacOS
+    runs-on: macos-latest
+    steps:
+      - name: Run date command
+        run: date
+
+  job4:
+    name: Show date with docker
+    needs: [ job1, job2, job3 ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Docker container to show date
+        run: |
+          docker run --rm ubuntu date
